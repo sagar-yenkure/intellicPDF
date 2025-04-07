@@ -4,7 +4,7 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Calendar } from "lucide-react";
-import { ExtendedUser } from "@/app/(pages)/account/page";
+import { ExtendedUser } from "./Account";
 
 const ProfileCard = ({ userData }: { userData: ExtendedUser }) => {
   const totalQuestions =
