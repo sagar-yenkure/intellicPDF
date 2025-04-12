@@ -40,7 +40,7 @@ const plans: Plan[] = [
   },
   {
     name: "PRO",
-    price: 7,
+    price: 4,
     priceUnit: "USD/mo",
     description: "Best for professionals",
     features: [
@@ -54,7 +54,7 @@ const plans: Plan[] = [
   },
   {
     name: "PREMIUM",
-    price: 15,
+    price: 12,
     priceUnit: "USD/mo",
     description: "For teams and businesses",
     features: [
