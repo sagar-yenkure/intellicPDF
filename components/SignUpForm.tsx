@@ -16,11 +16,13 @@ import useOAuth from "@/features/auth/useAuthLogin";
 import Spinner from "./Spinner";
 import useRegister from "@/features/auth/useRegister";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const router = useRouter();
   const { OAuthLogin, OAuthLoginPending } = useOAuth();
   const { Register, RegisterPending } = useRegister();
 
@@ -40,6 +42,7 @@ export function SignUpForm({
     Register(formData, {
       onSuccess: () => {
         setFormData({ name: "", email: "", password: "" });
+        router.push("/sign-in");
       },
     });
   };
