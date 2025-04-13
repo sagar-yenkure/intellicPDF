@@ -41,11 +41,6 @@ const PayButton = ({ plan }: PayButtonProps) => {
         description: `${plan.name} Plan`,
         handler: (res: any) => {
           const { razorpay_payment_id } = res;
-          toast({
-            title: "Payment Successful",
-            description: "Please Login Again",
-          });
-
           upgrade({
             amount,
             currency_code: currency,

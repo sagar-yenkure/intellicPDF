@@ -15,6 +15,8 @@ import CheakOutModal from "@/components/pricing/CheakOutModal";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import useGetUser from "@/features/user/useGetUser";
+import { ExtendedUser } from "../account/Account";
 
 export type Plan = {
   name: string;
@@ -68,9 +70,12 @@ const plans: Plan[] = [
 
 export default function PricingPage() {
   const { data: session } = useSession();
+  const { user } = useGetUser();
+  const userData = user?.data as ExtendedUser;
+
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
-  const currentPlan = session?.user?.plan || "BASIC";
+  const currentPlan = userData?.plan || "BASIC";
   const isLoggedIn = !!session?.user;
 
   return (
