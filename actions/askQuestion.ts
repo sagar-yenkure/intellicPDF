@@ -40,7 +40,10 @@ const askQuestion = async ({
 
     return { success: true, message: reply };
   } catch (error: any) {
-    return { success: false, message: error.message };
+    return {
+      success: false,
+      message: error.message || "server error, try again later!",
+    };
   }
 };
 

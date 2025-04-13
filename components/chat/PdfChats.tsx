@@ -51,7 +51,7 @@ const PdfChats = ({ pdfUrl }: { pdfUrl: string }) => {
       toast({
         variant: "destructive",
         title: "Limit Reached",
-        description: "You have reached the limit. Upgrade to to continue!",
+        description: "You have reached the limit. Upgrade to continue!",
       });
       return;
     }
@@ -63,20 +63,43 @@ const PdfChats = ({ pdfUrl }: { pdfUrl: string }) => {
     ]);
 
     startTransition(async () => {
-      const { success, message } = await askQuestion({
+      const response = await askQuestion({
         fileId: pdfUrl,
         input: inputValue,
       });
 
-      setMessages((prev) => {
-        const updatedMessages = [...prev];
-        updatedMessages[updatedMessages.length - 1] = {
-          role: "AI",
-          message: success ? message : `Whoops... ${message}`,
-          createdAt: new Date(),
-        };
-        return updatedMessages;
-      });
+      if (
+        response &&
+        response.success !== undefined &&
+        response.message !== undefined
+      ) {
+        setMessages((prev) => {
+          const updatedMessages = [...prev];
+          updatedMessages[updatedMessages.length - 1] = {
+            role: "AI",
+            message: response.success
+              ? response.message
+              : `Whoops... ${response.message}`,
+            createdAt: new Date(),
+          };
+          return updatedMessages;
+        });
+      } else {
+        setMessages((prev) => {
+          const updatedMessages = [...prev];
+          updatedMessages[updatedMessages.length - 1] = {
+            role: "AI",
+            message: "There was an error with your request. Please try again.",
+            createdAt: new Date(),
+          };
+          return updatedMessages;
+        });
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "An error occurred while processing your request.",
+        });
+      }
     });
 
     setInputValue("");
