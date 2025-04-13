@@ -28,7 +28,7 @@ const plans: Plan[] = [
   {
     name: "BASIC",
     price: 0,
-    priceUnit: "USD/mo",
+    priceUnit: "INR/mo",
     description: "Perfect for starters",
     features: [
       "3 documents",
@@ -40,22 +40,21 @@ const plans: Plan[] = [
   },
   {
     name: "PRO",
-    price: 4,
-    priceUnit: "USD/mo",
+    price: 149,
+    priceUnit: "INR/mo",
     description: "Best for professionals",
     features: [
       "10 documents",
       "25 questions per document",
       "Advanced Features",
       "Priority Support",
-      "API Access",
       "Max file size: 10MB",
     ],
   },
   {
     name: "PREMIUM",
-    price: 12,
-    priceUnit: "USD/mo",
+    price: 299,
+    priceUnit: "INR/mo",
     description: "For teams and businesses",
     features: [
       "25 documents",
