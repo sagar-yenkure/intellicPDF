@@ -12,6 +12,13 @@ const Footer = () => {
             <Link href={"/"} className="font-medium">
               IntellicPDF
             </Link>
+            |
+            <Link href={"/privacy-policy"}>
+              <p className="text-sm text-muted-foreground">Privacy-policy</p>
+            </Link>
+            <Link href={"/terms-services"}>
+              <p className="text-sm text-muted-foreground">TermsOfService</p>
+            </Link>
           </div>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} | Sagar Yenkure | All rights reserved.
