@@ -5,16 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { ExtendedUser, PLANS } from "./Account";
 
 interface SubscriptionCardProps {
-  userPlan: keyof typeof PLANS;
   userData: ExtendedUser;
 }
 
-const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
-  userPlan,
-  userData,
-}) => {
+const SubscriptionCard: React.FC<SubscriptionCardProps> = ({ userData }) => {
   const { FILES: maxFiles, QUESTIONSPERFILE: maxQuestionsPerFile } =
-    PLANS[userPlan];
+    PLANS[userData.plan as keyof typeof PLANS];
 
   const uploadedFiles = userData?.files?.length ?? 0;
   const hasReachedFileLimit = uploadedFiles >= maxFiles;
@@ -26,19 +22,20 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         <CardTitle>Plan Details</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        {userData.nextBilling && (
-          <div className="flex justify-between items-center py-3">
-            <div>
-              <h3 className="font-semibold">{userPlan}</h3>
+        <div className="flex justify-between items-center py-3">
+          <div>
+            {/* Updated to use formatted label */}
+            <h3 className="font-semibold">{userData.plan}</h3>
+            {userData.nextBilling && (
               <p className="text-sm text-muted-foreground">
                 Expires on {new Date(userData.nextBilling).toLocaleDateString()}
               </p>
-            </div>
-            <Badge variant="secondary">Active</Badge>
+            )}
           </div>
-        )}
+          <Badge variant="secondary">Active</Badge>
+        </div>
         <div>
-          <div className="flex justify-between text-sm mb-2">
+          <div className="flex justify-between text-sm my-2">
             <span>Plan Usage</span>
             <span>
               Limited to {maxFiles} files & {maxQuestionsPerFile} questions per

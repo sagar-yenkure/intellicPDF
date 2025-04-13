@@ -41,16 +41,12 @@ export default function AccountPage() {
   const userData = user?.data as ExtendedUser;
   const userTransactions = userData.transactions ?? [];
 
-  const userPlan = PLANS[userData?.plan as keyof typeof PLANS]
-    ? (userData.plan as keyof typeof PLANS)
-    : "BASIC";
-
   return (
     <div className="py-12 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <section className="grid gap-8 md:grid-cols-2 ">
           <ProfileCard userData={userData} />
-          <SubscriptionCard userPlan={userPlan} userData={userData} />
+          <SubscriptionCard userData={userData} />
         </section>
         <TransactionTable transactions={userTransactions} />
       </div>
