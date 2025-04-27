@@ -1,9 +1,13 @@
+"use client";
+
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowRight, Bot, FileText, Send } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 const Hero = () => {
+  const { data: session } = useSession();
   return (
     <section className="flex-grow flex items-center relative overflow-hidden bg-white dark:bg-black">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -26,7 +30,7 @@ const Hero = () => {
                 size="lg"
                 className="bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
               >
-                <Link href="/sign-in">
+                <Link href={session?.user ? "/documents" : "/sign-in"}>
                   Try Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
